@@ -1,0 +1,39 @@
+import random
+
+cards = {
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+    '10': 10,
+    'J': 2,
+    'Q': 3,
+    'K': 4,
+    'A': 11
+}
+
+deck = list(cards.keys())
+random.shuffle(deck)
+
+user_score = 0
+
+while True:
+    user_input = input("Хотите взять карту? (y/n): ").lower()
+    
+    if user_input == 'n':
+        print(f"Вы набрали {user_score} очков. Спасибо за игру!")
+        break
+    
+    elif user_input == 'y':
+        drawn_card = deck.pop()
+        user_score += cards[drawn_card]
+        print(f"Вы взяли {drawn_card}. Ваши очки: {user_score}")
+        
+        if user_score > 21:
+            print("Вы проиграли! Ваши очки превышают 21.")
+            break
+        elif user_score == 21:
+            print("Поздравляю! Вы выиграли с 21 очком!")
+            break
+    else:
+        print("Пожалуйста, введите 'y' или 'n'.")
